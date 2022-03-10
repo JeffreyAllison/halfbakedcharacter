@@ -17,7 +17,7 @@ const catchphraseButton = document.getElementById('catchphrase-button');
 let headCount = 0;
 let middleCount = 0;
 let bottomCount = 0;
-const catchphrase = [];
+const catchphrases = [];
 
 headDropdown.addEventListener('change', () => {
     // get the value of the head dropdown
@@ -61,12 +61,12 @@ bottomDropdown.addEventListener('change', () => {
 
 catchphraseButton.addEventListener('click', () => {
     // get the value of the catchphrase input
-    const theCatchphrase = catchphraseInput.value;
+    const theCatchphrases = catchphraseInput.value;
     // push the new catchphrase to the catchphrase array in state
-    catchphrase.push(theCatchphrase);
+    catchphrases.push(theCatchphrases);
 
     // clear out the form input's value so it's empty to the user
-    catchphraseInputEl.value = ''
+    catchphraseInput.value = '';
 
     // update the dom to show the new catchphrases (refactor to/call displayCatchphrases to do this work)
     displayCatchphrases();
@@ -74,16 +74,20 @@ catchphraseButton.addEventListener('click', () => {
 
 function displayStats() {
     // text content of the reportEl to tell the user how many times they've changed each piece of the state
-    reportEl.textContent = `You changed the head ${headCount} times, the middle ${middleCount} times, and the bottom ${bottomCount} times`
+    reportEl.textContent = `You changed the head ${headCount} times, the middle ${middleCount} times, and the bottom ${bottomCount} times`;
 }
 
 function displayCatchphrases() {
     // clear out the DOM for the currently displayed catchphrases
-    catchphraseInput.value = '';
+    catchphrasesEl.textContent = '';
 
     // loop through each catchphrase in state
-    for (let catchphrase of catchPhraseCount) {
-        console.log(catchphrase);
+    for (let catchphrase of catchphrases) {
+        const div = document.createElement('div');
+        div.classList.add('catchphrase');
+        div.textContent = catchphrase;
+        div.style.color = 'green';
+        catchphrasesEl.append(div);
     }
 
     // and for each catchphrase
