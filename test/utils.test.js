@@ -10,7 +10,7 @@ test('should return a string describing the current state', (expect) => {
 
     //Act 
     // Call the function you're testing and set the result to a const
-    const actual = makeStatsString(4, 5, 1);
+    const actual = makeStatsString();
 
     //Expect
     // Make assertions about what is expected versus the actual result
